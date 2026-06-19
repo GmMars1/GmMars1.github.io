@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+.venv
+
+# Virtual environments
+env/
+venv/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Configuration
+config.yaml
+.env
+.env.local
+
+# Data
+memory.db
+*.db
+logs/
+
+# Models (large files)
+models/
+*.gguf
+*.bin
+
+# Temporary files
+*.tmp
+*.log
+.pytest_cache/
+
+# OS
+.DS_Store
+Thumbs.db
