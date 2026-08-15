@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://gmars1.github.io/schemas/marsrag-loop-output.schema.json",
+  "title": "LoopOutput",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "hook",
+    "grip",
+    "payoff",
+    "reinforce",
+    "loop"
+  ],
+  "properties": {
+    "hook": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 800,
+      "description": "Open tension or stakes statement."
+    },
+    "grip": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 800,
+      "description": "Core mechanism or insight."
+    },
+    "payoff": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 800,
+      "description": "Specific value, recommendation, or result."
+    },
+    "reinforce": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 800,
+      "description": "Confidence-building evidence or framing."
+    },
+    "loop": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 800,
+      "description": "Best next question or action."
+    }
+  }
+}
