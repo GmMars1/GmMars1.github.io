@@ -29,29 +29,31 @@ bash setup.sh
 
 This guided setup will:
 1. Check system requirements
-2. Install dependencies
-3. Walk you through connecting your chat accounts
-4. Configure voice capabilities
-5. Start your local assistant
+2. Create a virtual environment
+3. Install dependencies from `requirements.txt`
+4. Ask which integrations and voice options you want to enable later
+5. Generate a baseline `config.yaml` file
 
 ## Project Structure
 
 ```
-lobster-ai-assistant/
-├── core/                    # Core AI engine
-│   ├── llm/                # Language model integration
-│   ├── voice/              # Voice processing (STT/TTS)
-│   └── memory/             # Local memory & context
-├── integrations/           # Chat app connectors
+GmMars1.github.io/
+├── main.py                 # Application entry point
+├── setup.sh                # Interactive setup script
+├── requirements.txt        # Python dependencies
+├── core/                   # Core assistant, config, memory, LLM wrappers
+│   ├── assistant.py
+│   ├── config.py
+│   ├── llm/
+│   └── memory/
+├── integrations/           # FastAPI server and chat connector modules
+│   ├── server.py
 │   ├── whatsapp/
 │   ├── discord/
 │   ├── telegram/
 │   └── slack/
-├── setup/                  # Installation & configuration
-│   ├── setup.sh            # Main setup script
-│   └── config.yaml         # Configuration template
 ├── docs/                   # Documentation
-└── tests/                  # Test suite
+└── tests/                  # Test support files
 ```
 
 ## Documentation

@@ -12,8 +12,8 @@
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/GmMars1/lobster-ai-assistant.git
-cd lobster-ai-assistant
+git clone https://github.com/GmMars1/GmMars1.github.io.git
+cd GmMars1.github.io
 ```
 
 ### 2. Run Setup

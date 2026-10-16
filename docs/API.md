@@ -39,50 +39,6 @@ Content-Type: application/json
 ```
 
 ---
-
-## Python SDK
-
-```python
-from lobster.client import LobsterClient
-
-# Connect to local Lobster
-client = LobsterClient("http://localhost:8000")
-
-# Send message
-response = client.send_message(
-    user_id="user123",
-    message="What can you help me with?"
-)
-
-print(response)  # 🦞 I can help with...
-```
-
----
-
-## WebSocket (Real-time)
-
-```python
-import asyncio
-from lobster.client import LobsterWebSocketClient
-
-async def main():
-    client = await LobsterWebSocketClient("ws://localhost:8000/ws")
-    
-    # Send message
-    await client.send_message(
-        user_id="user123",
-        message="Stream this response"
-    )
-    
-    # Receive streaming response
-    async for chunk in client.receive():
-        print(chunk, end="", flush=True)
-
-asyncio.run(main())
-```
-
----
-
 ## Error Handling
 
 ```json
@@ -95,25 +51,15 @@ asyncio.run(main())
 **Common errors:**
 - `400 Bad Request`: Invalid message format
 - `500 Internal Server Error`: Processing error
-- `503 Service Unavailable`: LLM not ready
+- `422 Unprocessable Entity`: Missing or invalid JSON fields
 
 ---
 
-## Rate Limiting
+## Implemented Endpoint Summary
 
-No rate limits for local deployment. Use as much as you want!
+Current FastAPI server implementation exposes:
+- `GET /`
+- `GET /health`
+- `POST /message`
 
----
-
-## Streaming Responses
-
-For long responses, use streaming to get chunks as they're generated:
-
-```http
-POST /message/stream
-Content-Type: application/json
-
-{"user_id": "user123", "message": "Tell me a story"}
-```
-
-The response will stream tokens as they're generated.
+This repository does not currently include a Python SDK, WebSocket endpoint, or streaming `/message/stream` endpoint.

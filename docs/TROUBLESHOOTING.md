@@ -139,7 +139,7 @@ LOG_LEVEL=DEBUG python main.py
 ## Getting Help
 
 1. Check this guide first
-2. Search GitHub issues: https://github.com/GmMars1/lobster-ai-assistant/issues
+2. Search GitHub issues: https://github.com/GmMars1/GmMars1.github.io/issues
 3. Enable debug mode and check logs
 4. Open a new GitHub issue with:
    - Your OS and Python version
