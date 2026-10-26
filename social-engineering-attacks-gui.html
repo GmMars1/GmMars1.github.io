@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Social Engineering Attacks — Interface</title>
+<style>
+  :root {
+    --bg:#070b16; --panel:#0d1424; --panel2:#0a1220; --line:#1e2a44;
+    --red:#e8112d; --cyan:#22d3ee; --amber:#fbbf24; --green:#22c55e;
+    --ink:#f1f5f9; --muted:#94a3b8; --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+  }
+  * { box-sizing:border-box; }
+  body {
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:system-ui,-apple-system,sans-serif; line-height:1.55;
+    background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
+    background-size:44px 44px;
+  }
+  header { padding:28px 16px 8px; max-width:820px; margin:0 auto; }
+  header h1 { margin:0; font-size:1.9rem; letter-spacing:.02em; }
+  header h1 span { color:var(--red); }
+  header p { color:var(--muted); margin:6px 0 0; }
+  nav {
+    position:sticky; top:0; z-index:10; background:rgba(7,11,22,.95);
+    border-bottom:1px solid var(--line); padding:10px 16px;
+    display:flex; gap:8px; overflow-x:auto; -webkit-overflow-scrolling:touch;
+  }
+  nav a {
+    flex:0 0 auto; color:var(--ink); text-decoration:none; font-size:.85rem;
+    padding:7px 12px; border:1px solid var(--line); border-radius:999px; background:var(--panel);
+  }
+  nav a.active { border-color:var(--red); color:#fff; background:#1a0d12; }
+  main { max-width:820px; margin:0 auto; padding:8px 16px 48px; }
+  section.attack {
+    background:var(--panel); border:1px solid var(--line); border-radius:14px;
+    padding:20px; margin:24px 0; scroll-margin-top:64px;
+  }
+  .chips { display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+  .chip { font-size:.78rem; font-weight:800; letter-spacing:.04em; padding:4px 10px; border-radius:4px; }
+  .chip.num { background:var(--red); color:#fff; }
+  .chip.cat { background:#1e293b; color:var(--cyan); border:1px solid var(--line); }
+  h2.title { color:var(--red); font-size:2.2rem; line-height:1; margin:14px 0 2px; letter-spacing:.01em; }
+  p.desc { color:var(--muted); margin:0 0 16px; font-size:1.02rem; }
+  h3.label { display:inline-block; font-size:.8rem; letter-spacing:.05em; margin:18px 0 10px; padding:4px 10px; border-radius:4px; background:var(--red); color:#fff; }
+  h3.label.blue { background:#1d4ed8; }
+  h3.label.darkred { background:#7f1d1d; }
+  h3.label.green { background:#15803d; }
+  ol.steps { margin:0; padding-left:0; list-style:none; }
+  ol.steps li { display:flex; gap:10px; margin:10px 0; }
+  ol.steps .n {
+    flex:0 0 auto; width:26px; height:26px; border-radius:50%; background:var(--red);
+    color:#fff; font-weight:800; font-size:.85rem; display:flex; align-items:center; justify-content:center; margin-top:1px;
+  }
+  .term {
+    background:var(--panel2); border:1px solid #164e63; border-radius:10px;
+    padding:14px 16px; font-family:var(--mono); font-size:.92rem; overflow-x:auto;
+  }
+  .term .dots { color:var(--muted); font-size:.8rem; margin-bottom:8px; }
+  .term .dots b { color:#f87171; } .term .dots i { color:#facc15; font-style:normal; } .term .dots s { color:#4ade80; text-decoration:none; }
+  .term .cmd { color:#fde68a; }
+  .term .out { color:var(--cyan); }
+  ul.flags { margin:0; padding-left:0; list-style:none; }
+  ul.flags li { margin:10px 0; color:#fde68a; padding-left:26px; position:relative; }
+  ul.flags li::before { content:"⚠"; position:absolute; left:0; color:var(--amber); }
+  .defense {
+    border:1px solid #166534; background:#052e16; border-radius:10px;
+    padding:14px 16px; margin-top:4px;
+  }
+  .defense p { margin:6px 0 0; }
+  footer { max-width:820px; margin:0 auto; padding:0 16px 40px; color:var(--muted); font-size:.85rem; }
+  footer a { color:var(--cyan); }
+</style>
+</head>
+<body>
+<header>
+  <h1>SOCIAL ENGINEERING <span>ATTACKS</span></h1>
+  <p>Seven attacks, one interface. Tap a name to jump to its card. Educational content rendered from the card set shared by Tony.</p>
+</header>
+<nav id="nav">
+  <a href="#phishing">Phishing</a>
+  <a href="#vishing">Vishing</a>
+  <a href="#smishing">Smishing</a>
+  <a href="#pretexting">Pretexting</a>
+  <a href="#baiting">Baiting</a>
+  <a href="#quidproquo">Quid Pro Quo</a>
+  <a href="#tailgating">Tailgating</a>
+</nav>
+<main>
+
+<section class="attack" id="phishing">
+  <div class="chips"><span class="chip num">01 / 07</span><span class="chip cat">EMAIL ATTACK</span></div>
+  <h2 class="title">PHISHING</h2>
+  <p class="desc">Deceptive emails crafted to steal credentials or deploy malware.</p>
+  <h3 class="label">HOW IT WORKS</h3>
+  <ol class="steps">
+    <li><span class="n">1</span><span>Attacker spoofs a trusted sender (bank, PayPal, IT dept).</span></li>
+    <li><span class="n">2</span><span>Urgent pretext: “Your account is suspended — verify now.”</span></li>
+    <li><span class="n">3</span><span>Link points to a pixel-perfect cloned login page (typosquatting).</span></li>
+  </ol>
+  <h3 class="label blue">REAL-WORLD EXAMPLE</h3>
+  <div class="term"><div class="dots"><b>●</b> <i>●</i> <s>●</s> example.log</div>
+    <div>From: support@paypa1.com <span style="color:#94a3b8">[note: ‘1’ not ‘l’]</span></div>
+    <div>Subject: Unusual Sign-In Detected – Verify Account</div>
+    <div class="out">→ Fake PayPal page harvests credentials + card info</div>
+  </div>
+  <h3 class="label darkred">RED FLAGS</h3>
+  <ul class="flags">
+    <li>Mismatched domain (paypa1.com ≠ paypal.com)</li>
+    <li>Urgent language (“Act now or account gets locked”)</li>
+    <li>Hover URL ≠ displayed anchor text in email</li>
+  </ul>
+  <h3 class="label green">DEFENSE TIP</h3>
+  <div class="defense"><p>Never click email links. Navigate directly in browser. Enable MFA on every account.</p></div>
+</section>
+
+<section class="attack" id="vishing">
+  <div class="chips"><span class="chip num">02 / 07</span><span class="chip cat">VOICE ATTACK</span></div>
+  <h2 class="title">VISHING</h2>
+  <p class="desc">Voice phishing via phone calls impersonating trusted authorities.</p>
+  <h3 class="label">HOW IT WORKS</h3>
+  <ol class="steps">
+    <li><span class="n">1</span><span>Caller ID spoofed to show IRS, bank, or tech support number.</span></li>
+    <li><span class="n">2</span><span>AI voice cloning enables real-time executive impersonation.</span></li>
+    <li><span class="n">3</span><span>Victim pressured to reveal OTPs, SSNs, or wire transfers.</span></li>
+  </ol>
+  <h3 class="label blue">REAL-WORLD EXAMPLE</h3>
+  <div class="term"><div class="dots"><b>●</b> <i>●</i> <s>●</s> example.log</div>
+    <div class="cmd">“This is IRS Agent #4821. You owe $3,200.”</div>
+    <div class="cmd">“Pay via gift cards to avoid immediate arrest.”</div>
+    <div class="out">→ Gift card numbers extracted live over the call</div>
+  </div>
+  <h3 class="label darkred">RED FLAGS</h3>
+  <ul class="flags">
+    <li>Unsolicited call demanding immediate payment</li>
+    <li>Refuses to give a verifiable callback number</li>
+    <li>Creates fear/urgency — arrest, lawsuit, account freeze</li>
+  </ul>
+  <h3 class="label green">DEFENSE TIP</h3>
+  <div class="defense"><p>Hang up. Call the organization directly using the official number on their website.</p></div>
+</section>
+
+<section class="attack" id="smishing">
+  <div class="chips"><span class="chip num">03 / 07</span><span class="chip cat">SMS ATTACK</span></div>
+  <h2 class="title">SMISHING</h2>
+  <p class="desc">SMS-based phishing using mobile messages to harvest sensitive data.</p>
+  <h3 class="label">HOW IT WORKS</h3>
+  <ol class="steps">
+    <li><span class="n">1</span><span>Texts sent via spoofed numbers or bulk SMS gateways.</span></li>
+    <li><span class="n">2</span><span>Short URLs (bit.ly) hide the real malicious destination.</span></li>
+    <li><span class="n">3</span><span>Mobile browsers truncate URLs — much harder for victims to verify.</span></li>
+  </ol>
+  <h3 class="label blue">REAL-WORLD EXAMPLE</h3>
+  <div class="term"><div class="dots"><b>●</b> <i>●</i> <s>●</s> example.log</div>
+    <div class="cmd">“FedEx: Your package #749 is held at facility.”</div>
+    <div class="cmd">“Confirm delivery address: http://bit.ly/fdx-conf”</div>
+    <div class="out">→ Harvests full name, address, and card details</div>
+  </div>
+  <h3 class="label darkred">RED FLAGS</h3>
+  <ul class="flags">
+    <li>Unexpected delivery or bank SMS with shortened links</li>
+    <li>Requests sensitive info via a link (banks never do this)</li>
+    <li>Grammar errors or mismatched branding in the message</li>
+  </ul>
+  <h3 class="label green">DEFENSE TIP</h3>
+  <div class="defense"><p>Never tap SMS links. Open the official app or website directly to check status.</p></div>
+</section>
+
+<section class="attack" id="pretexting">
+  <div class="chips"><span class="chip num">04 / 07</span><span class="chip cat">IDENTITY FRAUD</span></div>
+  <h2 class="title">PRETEXTING</h2>
+  <p class="desc">Fabricating a false identity or scenario to extract sensitive info.</p>
+  <h3 class="label">HOW IT WORKS</h3>
+  <ol class="steps">
+    <li><span class="n">1</span><span>Attacker profiles target via OSINT (LinkedIn, company site).</span></li>
+    <li><span class="n">2</span><span>Constructs a believable role: fake vendor, HR, IT auditor.</span></li>
+    <li><span class="n">3</span><span>Builds rapport over multiple interactions before the final ask.</span></li>
+  </ol>
+  <h3 class="label blue">REAL-WORLD EXAMPLE</h3>
+  <div class="term"><div class="dots"><b>●</b> <i>●</i> <s>●</s> example.log</div>
+    <div class="cmd">“Hi, I’m Sarah from IT Compliance team.”</div>
+    <div class="cmd">“We’re running a security audit this week – I need your AD password to validate accounts in scope.”</div>
+  </div>
+  <h3 class="label darkred">RED FLAGS</h3>
+  <ul class="flags">
+    <li>Requests that bypass normal verification procedures</li>
+    <li>Over-familiarity using OSINT data to appear legitimate</li>
+    <li>Cannot provide verifiable employee ID or department contact</li>
+  </ul>
+  <h3 class="label green">DEFENSE TIP</h3>
+  <div class="defense"><p>Always verify identity through official internal channels before sharing any information.</p></div>
+</section>
+
+<section class="attack" id="baiting">
+  <div class="chips"><span class="chip num">05 / 07</span><span class="chip cat">PHYSICAL + DIGITAL</span></div>
+  <h2 class="title">BAITING</h2>
+  <p class="desc">Luring victims using enticing physical media or fake digital downloads.</p>
+  <h3 class="label">HOW IT WORKS</h3>
+  <ol class="steps">
+    <li><span class="n">1</span><span>USB drives labeled ‘SALARY_2025.xlsx’ dropped in parking lots.</span></li>
+    <li><span class="n">2</span><span>Malicious AutoRun / LNK files execute reverse shell on insertion.</span></li>
+    <li><span class="n">3</span><span>Online: pirated software bundled with RATs and keyloggers.</span></li>
+  </ol>
+  <h3 class="label blue">REAL-WORLD EXAMPLE</h3>
+  <div class="term"><div class="dots"><b>●</b> <i>●</i> <s>●</s> example.log</div>
+    <div>USB labeled ‘Confidential – Layoffs Q4 2025’ at lobby</div>
+    <div class="out">→ Curious employee inserts it at their workstation</div>
+    <div class="out">→ AutoRun triggers – reverse shell connects to attacker C2</div>
+  </div>
+  <h3 class="label darkred">RED FLAGS</h3>
+  <ul class="flags">
+    <li>Found USB / CD with an intriguing or sensitive-looking label</li>
+    <li>Free software downloads from unofficial or cracked sources</li>
+    <li>Files using double extensions: report.pdf.exe</li>
+  </ul>
+  <h3 class="label green">DEFENSE TIP</h3>
+  <div class="defense"><p>Never plug in unknown USB devices. Disable AutoRun via Group Policy. Use USB condoms.</p></div>
+</section>
+
+<section class="attack" id="quidproquo">
+  <div class="chips"><span class="chip num">06 / 07</span><span class="chip cat">FALSE EXCHANGE</span></div>
+  <h2 class="title">QUID PRO QUO</h2>
+  <p class="desc">Offering a fake service or benefit in exchange for credentials or access.</p>
+  <h3 class="label">HOW IT WORKS</h3>
+  <ol class="steps">
+    <li><span class="n">1</span><span>Attacker cold-calls posing as IT support offering a ‘free scan’.</span></li>
+    <li><span class="n">2</span><span>Victim hands over remote access credentials for the ‘fix’.</span></li>
+    <li><span class="n">3</span><span>Session used to install RATs, exfiltrate data, pivot the network.</span></li>
+  </ol>
+  <h3 class="label blue">REAL-WORLD EXAMPLE</h3>
+  <div class="term"><div class="dots"><b>●</b> <i>●</i> <s>●</s> example.log</div>
+    <div class="cmd">“Hi, Microsoft detected a virus on your PC.”</div>
+    <div class="cmd">“Allow me to remote in and remove it for free now.”</div>
+    <div class="out">→ TeamViewer session hijacked – full persistent access</div>
+  </div>
+  <h3 class="label darkred">RED FLAGS</h3>
+  <ul class="flags">
+    <li>Unsolicited offer of free IT help or system optimization</li>
+    <li>Requests installation of remote access tool (AnyDesk / TeamViewer)</li>
+    <li>Asks you to disable antivirus ‘temporarily’ for the fix</li>
+  </ul>
+  <h3 class="label green">DEFENSE TIP</h3>
+  <div class="defense"><p>IT never calls employees unprompted. Report all unsolicited support calls to your security team.</p></div>
+</section>
+
+<section class="attack" id="tailgating">
+  <div class="chips"><span class="chip num">07 / 07</span><span class="chip cat">PHYSICAL BREACH</span></div>
+  <h2 class="title">TAILGATING</h2>
+  <p class="desc">Physically following authorized personnel into restricted secure areas.</p>
+  <h3 class="label">HOW IT WORKS</h3>
+  <ol class="steps">
+    <li><span class="n">1</span><span>Attacker stands near badge-access door with hands full (boxes).</span></li>
+    <li><span class="n">2</span><span>Exploits social courtesy — employees hold doors out of politeness.</span></li>
+    <li><span class="n">3</span><span>Once inside: installs keyloggers, network taps, or plants bugs.</span></li>
+  </ol>
+  <h3 class="label blue">REAL-WORLD EXAMPLE</h3>
+  <div class="term"><div class="dots"><b>●</b> <i>●</i> <s>●</s> example.log</div>
+    <div>Attacker in uniform carries boxes toward server room</div>
+    <div class="out">→ Employee swipes badge and politely holds door open</div>
+    <div class="out">→ Attacker plants LAN Turtle network tap – undetected</div>
+  </div>
+  <h3 class="label darkred">RED FLAGS</h3>
+  <ul class="flags">
+    <li>Unknown person follows closely without badging independently</li>
+    <li>Unfamiliar ‘vendor’ or ‘delivery person’ wants unescorted access</li>
+    <li>Unusual curiosity about server rooms or network closets</li>
+  </ul>
+  <h3 class="label green">DEFENSE TIP</h3>
+  <div class="defense"><p>Challenge all unrecognized people. Each employee owns the badge — always badge separately.</p></div>
+</section>
+
+</main>
+<footer>
+  <p>Educational content, rendered as an interface from the @hackingflixofficial card set Tony shared (7 attack cards; the set’s cover page wasn’t in the batch). Not affiliated with the card creator. Defense tips are general awareness guidance, not legal or incident-response advice.</p>
+</footer>
+<script>
+const links = [...document.querySelectorAll("nav a")];
+const sections = links.map(a => document.querySelector(a.getAttribute("href")));
+const spy = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      links.forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + e.target.id));
+    }
+  });
+}, { rootMargin: "-40% 0px -55% 0px" });
+sections.forEach(s => spy.observe(s));
+</script>
+</body>
+</html>
